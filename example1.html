@@ -8,12 +8,23 @@
         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     </head>
     <script src="vue.js"></script>
-    <body>
+    <body id="app">
 
-        <h1></h1>
+        <h1>Bienvenido, {{ name }}</h1>
+
+        <input type="text" v-model="name" class="form-control">
+
+        <hr>
+
+        <pre>{{ $data | json}}</pre>
 
         <script type="text/javascript">
-
+            new Vue({
+                el: "#app",
+                data: {
+                    name: "Pablo"
+                }
+            });
         </script>
     </body>
 </html>
