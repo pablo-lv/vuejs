@@ -35,9 +35,17 @@
                     <p>¿Cuántos años tienes de experiencia en PHP?</p>
                     <p>
                         Respuesta: <strong>{{ years_php }} </strong>
-                        <button type="button" class="btn" @click="years_php ++">+</button>
-                        <button type="button" class="btn" @click="minYear">-</button>
+                        <button type="button"
+                                :class="{btn: true, 'btn-danger': years_php > 10}"
+                                @click="addYear"
+                                :style="getAddYearButtonStyles()"
+                                >+
+                        </button>
+                        <button type="button" class="btn" v-bind:disabled="years_php == 0" @click="subYear">-</button>
                     </p>
+
+                    <!-- <img src="./logo.png" v-bind:title="years_php" width="200"> -->
+
                     <hr>
                     <p v-show="name">
                         <button type="submit" class="btn btn-primary">
@@ -75,10 +83,17 @@
                             alert("Saliendo");
                         }
                     },
-                    minYear: function (){
-                        if (this.years_php >= 1) {
-                            this.years_php --;
-                        }
+                    addYear: function () {
+                        this.years_php++;
+                    },
+                    subYear: function () {
+                        //if (years_php > 0)
+                        //{
+                            this.years_php--;
+                        //}
+                    },
+                    getAddYearButtonStyles: function () {
+                        return {'font-size': 10 + this.years_php + 'px'};
                     }
                 }
             });
